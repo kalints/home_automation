@@ -1,5 +1,9 @@
 #!/usr/bin/env ruby
 
+# Constants
+
+WIFI_NET = "S-STAR-SP1"
+
 # Libraries
 
 require 'logger'
@@ -21,6 +25,14 @@ end
 
 logger.info("Running wifi_check...")	
 
-wifi_connected = %x{/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I}
+wifi_connected = %x{/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I}.match(/\ SSID: (.*)/)[1]
 
-binding.pry
+if wifi_connected == WIFI_NET
+	logger.info("WiFi OK")
+else
+	logger.warn("WiFi connected to wrong network!")
+	pass = ""
+	puts "Enter password: "
+	pass = gets.chomp
+	%x{/usr/sbin/networksetup -setairportnetwork en0 S-STAR-SP1 #{pass}} && logger.info("WiFi connected!")
+end
