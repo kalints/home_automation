@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 
 # WiFi Checks
-load "wifi_check.rb"
+load "modules/wifi_check.rb"
