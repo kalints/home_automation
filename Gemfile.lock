@@ -4,6 +4,7 @@ GEM
     coderay (1.1.2)
     logger (1.2.8)
     method_source (0.9.0)
+    net-ping (2.0.2)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -13,6 +14,7 @@ PLATFORMS
 
 DEPENDENCIES
   logger
+  net-ping
   pry
 
 BUNDLED WITH

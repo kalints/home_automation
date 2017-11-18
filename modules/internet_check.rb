@@ -5,6 +5,7 @@
 require 'pry'
 require 'resolv'
 require 'logger'
+require 'net/ping'
 
 # Logger settings
 
@@ -12,15 +13,31 @@ logger = Logger.new(STDOUT)
 logger.level = Logger::INFO
 logger.datetime_format = '%Y-%m-%d %H:%M:%S'
 
+logger.info("Internet --> Running Internet checks...")
+
 def check_resolv
-	begin
-		Resolv.getaddress('google.com')
-		return true
-	rescue
-		return false
-	end
+  begin
+    resolved = Resolv.getaddress('google.com')
+    resolved
+  rescue
+    return false
+  end
+  resolved
 end
 
-check_resolv ? logger.info("Internet --> resolving OK!") : logger.fatal("Internet --> unable to resolve URLs - check DNS!")
+def up?(host)
+    check = Net::Ping::External.new(host)
+    check.ping?
+end
 
-# binding.pry
+if resolved_host = check_resolv
+  logger.info("Internet --> Resolving OK")
+else
+  logger.fatal("Internet --> unable to resolve URLs - check DNS!")
+end
+
+if resolved_host
+  up?(resolved_host) && logger.info("Internet --> Ping OK")
+else
+  logger.fatal("Internet --> cannot ping!")
+end
