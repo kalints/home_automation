@@ -10,9 +10,11 @@ It's based on main.rb which calls modules. The idea is to have small files with 
 __Example output:__
 
 ```
-I, [2017-11-18 14:27:46#59727]  INFO -- : WiFi --> MacOS detected
-I, [2017-11-18 14:27:46#59727]  INFO -- : WiFi --> Running wifi_check...
-W, [2017-11-18 14:27:46#59727]  WARN -- : WiFi --> WiFi connected to wrong network!
-I, [2017-11-18 14:27:52#59727]  INFO -- : WiFi --> WiFi reconnected to correct network!
-I, [2017-11-18 14:27:52#59727]  INFO -- : Internet --> resolving OK!
+I, [2017-11-18 14:55:36#61341]  INFO -- : WiFi --> MacOS detected
+I, [2017-11-18 14:55:36#61341]  INFO -- : WiFi --> Running wifi_check...
+W, [2017-11-18 14:55:36#61341]  WARN -- : WiFi --> WiFi connected to wrong network!
+I, [2017-11-18 14:55:39#61341]  INFO -- : WiFi --> WiFi reconnected to correct network!
+I, [2017-11-18 14:55:40#61341]  INFO -- : Internet --> Running Internet checks...
+I, [2017-11-18 14:55:40#61341]  INFO -- : Internet --> Resolving OK
+I, [2017-11-18 14:55:40#61341]  INFO -- : Internet --> Ping OK
 ```
