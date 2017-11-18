@@ -19,21 +19,21 @@ else
   exit(0)
 end
 
-logger.info("Running wifi_check...")	
+logger.info("Running wifi_check...")  
 
 wifi_connected = %x{/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I}.match(/\ SSID: (.*)/)[1]
 
 if wifi_connected == ENV['wifi_net']
-	logger.info("WiFi OK")
+  logger.info("WiFi OK")
 else
-	logger.warn("WiFi connected to wrong network!")
-	if ENV['wifi_pass'] == nil
-		logger.fatal("Cannot connect to the correct network. Set your pass to ENV['wifi_pass']!")
-	else
-		%x{/usr/sbin/networksetup -setairportnetwork en0 #{ENV['wifi_net']} #{ENV['wifi_pass']}} || logger.fatal("Cannot connect to correct WiFi network!")
-		wifi_connected = %x{/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I}.match(/\ SSID: (.*)/)[1]
-		if wifi_connected == ENV['wifi_net']
-			logger.info("WiFi reconnected to correct network!")
-		end
-	end
+  logger.warn("WiFi connected to wrong network!")
+  if ENV['wifi_pass'] == nil
+    logger.fatal("Cannot connect to the correct network. Set your pass to ENV['wifi_pass']!")
+  else
+    %x{/usr/sbin/networksetup -setairportnetwork en0 #{ENV['wifi_net']} #{ENV['wifi_pass']}} || logger.fatal("Cannot connect to correct WiFi network!")
+    wifi_connected = %x{/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I}.match(/\ SSID: (.*)/)[1]
+    if wifi_connected == ENV['wifi_net']
+      logger.info("WiFi reconnected to correct network!")
+    end
+  end
 end
