@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+# Libraries
+
 require 'pry'
 require 'resolv'
 require 'logger'
@@ -12,13 +14,13 @@ logger.datetime_format = '%Y-%m-%d %H:%M:%S'
 
 def check_resolv
 	begin
-		p Resolv.getaddress('google.com')
+		Resolv.getaddress('google.com')
 		return true
 	rescue
 		return false
 	end
 end
 
-check_resolv or logger.fatal("Internet --> unable to resolve URLs - check DNS!")
+check_resolv ? logger.info("Internet --> resolving OK!") : logger.fatal("Internet --> unable to resolve URLs - check DNS!")
 
 # binding.pry
