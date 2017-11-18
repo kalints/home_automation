@@ -40,4 +40,5 @@ if resolved_host
   up?(resolved_host) && logger.info("Internet --> Ping OK")
 else
   logger.fatal("Internet --> cannot ping!")
+  load "modules/internet_restore.rb"
 end
