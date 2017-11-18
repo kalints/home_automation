@@ -15,7 +15,7 @@ os_check = %x{uname}.strip
 if os_check == "Darwin"
   logger.info("WiFi --> MacOS detected")
 else
-  logger.fatal("WiFi --> Sorry, I cannot run on your system.")
+  logger.fatal("WiFi --> Sorry, I don't know how to handle WiFi on your system.")
   exit(0)
 end
 
