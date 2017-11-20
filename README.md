@@ -6,6 +6,7 @@ It's based on main.rb which calls modules. The idea is to have small files with 
 
 * modules/wifi_check.rb - checks my WiFi connection to see if I'm connected to the correct network
 * modules/internet_check.rb - checks Internet availability
+* modules/internet_restore.rb - reboots my router if internet_check.rb calls for this
 
 __Example output:__
 
